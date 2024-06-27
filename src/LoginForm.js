@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './LoginForm.css';
 
-const LoginForm = () => {
+const LoginForm = ({ onLogin }) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  const navigate = useNavigate();
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -14,12 +16,14 @@ const LoginForm = () => {
       console.log('Username:', username);
       console.log('Password:', password);
       setError('');
+      onLogin();
+      navigate('/products');
     }
   };
 
   return (
     <div className="login-form">
-      <h1>Login</h1>
+      <h1>Login Page</h1>
       <form onSubmit={handleSubmit}>
         <div className="form-group">
           <label htmlFor="username">Username</label>
